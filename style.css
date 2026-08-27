@@ -3864,3 +3864,47 @@ footer p:last-child {
     }
 
 }
+/* =====================================================
+   MOBILE NAVBAR — BECOME A CREATOR
+===================================================== */
+
+@media (max-width: 768px) {
+
+    .navbar {
+        display: flex !important;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 16px 18px !important;
+    }
+
+    .navbar .logo {
+        flex-shrink: 0;
+    }
+
+    .navbar nav {
+        display: none !important;
+    }
+
+    .navbar .nav-btn {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+
+        width: auto !important;
+        min-width: 145px;
+        height: 42px;
+
+        padding: 0 14px !important;
+
+        font-size: 11px !important;
+        white-space: nowrap;
+
+        opacity: 1 !important;
+        visibility: visible !important;
+
+        position: relative;
+        z-index: 1000;
+    }
+
+}
