@@ -1,0 +1,3866 @@
+/* =========================================================
+   MYSTIC STUDIO
+   PREMIUM STARTUP DEMO UI
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #080808;
+    --surface: #111111;
+    --surface-light: #181818;
+    --text: #f5f5f5;
+    --muted: #969696;
+    --line: rgba(255,255,255,0.1);
+    --accent: #c8ff32;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: "DM Sans", sans-serif;
+    overflow-x: hidden;
+}
+
+button,
+a {
+    font: inherit;
+}
+
+button {
+    border: none;
+    cursor: pointer;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+/* =========================================================
+   CURSOR
+========================================================= */
+
+.cursor {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+}
+
+.cursor-ring {
+    position: fixed;
+    width: 38px;
+    height: 38px;
+    border: 1px solid rgba(200,255,50,0.6);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition:
+        width .25s ease,
+        height .25s ease,
+        border-color .25s ease;
+}
+
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+.navbar {
+    width: 100%;
+    height: 82px;
+    padding: 0 6vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--line);
+    position: relative;
+    z-index: 100;
+}
+
+.logo {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 25px;
+    font-weight: 700;
+    letter-spacing: -1px;
+}
+
+.logo span,
+footer strong span {
+    color: var(--accent);
+}
+
+.navbar nav {
+    display: flex;
+    gap: 40px;
+}
+
+.navbar nav a {
+    color: #aaa;
+    font-size: 14px;
+    transition: color .3s ease;
+}
+
+.navbar nav a:hover {
+    color: white;
+}
+
+.nav-btn {
+    background: white;
+    color: black;
+    padding: 12px 20px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 600;
+    transition:
+        transform .3s ease,
+        background .3s ease;
+}
+
+.nav-btn:hover {
+    transform: translateY(-3px);
+    background: var(--accent);
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+    min-height: calc(100vh - 82px);
+    padding: 80px 7vw;
+    display: grid;
+    grid-template-columns: 1.05fr .95fr;
+    align-items: center;
+    gap: 60px;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: rgba(200,255,50,.07);
+    filter: blur(100px);
+    right: 8%;
+    top: 15%;
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   HERO TEXT
+========================================================= */
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    animation: heroText 1s ease forwards;
+}
+
+@keyframes heroText {
+
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+.eyebrow {
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 22px;
+}
+
+.hero h1 {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: clamp(55px, 7vw, 105px);
+    line-height: .91;
+    letter-spacing: -6px;
+    max-width: 850px;
+}
+
+.hero h1 span {
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255,255,255,.65);
+}
+
+.hero-description {
+    max-width: 490px;
+    margin-top: 30px;
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 14px;
+    margin-top: 35px;
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.primary-btn {
+    background: var(--accent);
+    color: #090909;
+    padding: 16px 24px;
+    border-radius: 40px;
+    font-weight: 700;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease;
+}
+
+.primary-btn span {
+    font-size: 18px;
+}
+
+.primary-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(200,255,50,.18);
+}
+
+.secondary-btn {
+    background: transparent;
+    border: 1px solid var(--line);
+    color: white;
+    padding: 16px 24px;
+    border-radius: 40px;
+    font-size: 13px;
+    transition:
+        background .3s ease,
+        border-color .3s ease;
+}
+
+.secondary-btn:hover {
+    background: white;
+    color: black;
+    border-color: white;
+}
+
+
+/* =========================================================
+   HERO VISUAL
+========================================================= */
+
+.hero-visual {
+    min-height: 570px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.visual-circle {
+    position: absolute;
+    width: 420px;
+    height: 420px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,.08);
+    animation: rotateCircle 18s linear infinite;
+}
+
+.visual-circle::before {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: var(--accent);
+    border-radius: 50%;
+    top: 20px;
+    left: 50%;
+}
+
+@keyframes rotateCircle {
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+
+/* =========================================================
+   CAMERA CARD
+========================================================= */
+
+.camera-card {
+    width: 340px;
+    background: #151515;
+    border: 1px solid rgba(255,255,255,.14);
+    border-radius: 18px;
+    overflow: hidden;
+    position: relative;
+    z-index: 3;
+    box-shadow: 0 40px 100px rgba(0,0,0,.7);
+    transform: rotate(3deg);
+    transition: transform .5s ease;
+}
+
+.camera-card:hover {
+    transform: rotate(0deg) scale(1.03);
+}
+
+.camera-top,
+.camera-bottom {
+    padding: 15px 17px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.camera-top {
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: #888;
+}
+
+.camera-top span:first-child {
+    color: var(--accent);
+}
+
+.camera-image {
+    height: 390px;
+    position: relative;
+    background:
+        linear-gradient(
+            135deg,
+            #333,
+            #151515 45%,
+            #292929
+        );
+    overflow: hidden;
+}
+
+.camera-image::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(
+            circle at 70% 30%,
+            rgba(200,255,50,.16),
+            transparent 35%
+        );
+}
+
+.focus-box {
+    width: 130px;
+    height: 130px;
+    border: 1px solid var(--accent);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    animation: focusPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes focusPulse {
+
+    0%,100% {
+        opacity: .35;
+        transform: translate(-50%,-50%) scale(.92);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translate(-50%,-50%) scale(1);
+    }
+
+}
+
+.camera-bottom {
+    background: #101010;
+}
+
+.camera-bottom small {
+    display: block;
+    color: #777;
+    font-size: 9px;
+    letter-spacing: 2px;
+    margin-bottom: 4px;
+}
+
+.camera-bottom strong {
+    font-size: 13px;
+}
+
+.rating {
+    color: var(--accent);
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   FLOATING TAGS
+========================================================= */
+
+.floating-tag {
+    position: absolute;
+    background: rgba(20,20,20,.85);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--line);
+    padding: 12px 16px;
+    border-radius: 30px;
+    font-size: 12px;
+    z-index: 5;
+    animation: floating 4s ease-in-out infinite;
+}
+
+.tag-one {
+    top: 12%;
+    left: 2%;
+}
+
+.tag-two {
+    right: 0;
+    top: 28%;
+    animation-delay: 1s;
+}
+
+.tag-three {
+    bottom: 12%;
+    left: 7%;
+    animation-delay: 2s;
+}
+
+@keyframes floating {
+
+    0%,100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+
+}
+
+
+/* =========================================================
+   MARQUEE
+========================================================= */
+
+.marquee {
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    overflow: hidden;
+    padding: 22px 0;
+    white-space: nowrap;
+}
+
+.marquee-track {
+    display: inline-flex;
+    align-items: center;
+    gap: 35px;
+    animation: marquee 20s linear infinite;
+}
+
+.marquee span {
+    font-family: "Space Grotesk";
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.marquee i {
+    color: var(--accent);
+    font-style: normal;
+}
+
+@keyframes marquee {
+
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+
+}
+
+
+/* =========================================================
+   DISCOVER
+========================================================= */
+
+.discover {
+    padding: 140px 7vw;
+}
+
+.section-heading {
+    max-width: 650px;
+}
+
+.section-heading h2 {
+    font-family: "Space Grotesk";
+    font-size: clamp(42px, 5vw, 70px);
+    letter-spacing: -3px;
+    line-height: .95;
+}
+
+.section-heading > p:last-child {
+    color: var(--muted);
+    margin-top: 22px;
+    line-height: 1.7;
+    max-width: 500px;
+}
+
+
+/* =========================================================
+   SEARCH PANEL
+========================================================= */
+
+.search-panel {
+    margin-top: 60px;
+    background: #111;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 12px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr auto;
+    gap: 8px;
+}
+
+.search-item {
+    padding: 18px;
+    border-right: 1px solid var(--line);
+}
+
+.search-item small {
+    display: block;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: #777;
+    margin-bottom: 10px;
+}
+
+.search-item button {
+    background: transparent;
+    color: white;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+}
+
+.search-item button span {
+    color: #666;
+}
+
+.search-btn {
+    background: var(--accent);
+    color: #090909;
+    border-radius: 14px;
+    padding: 0 25px;
+    font-size: 11px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+
+/* =========================================================
+   CREATORS
+========================================================= */
+
+.creators {
+    padding: 100px 7vw 150px;
+}
+
+.creator-heading {
+    max-width: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    margin-bottom: 55px;
+}
+
+.view-all {
+    background: transparent;
+    color: #aaa;
+    border-bottom: 1px solid #555;
+    padding-bottom: 5px;
+    font-size: 13px;
+}
+
+.creator-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.creator-card {
+    background: #101010;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    overflow: hidden;
+    transition:
+        transform .45s ease,
+        border-color .45s ease;
+}
+
+.creator-card:hover {
+    transform: translateY(-12px);
+    border-color: rgba(200,255,50,.45);
+}
+
+.creator-image {
+    height: 430px;
+    position: relative;
+    background:
+        linear-gradient(
+            145deg,
+            #333,
+            #151515 55%,
+            #242424
+        );
+    overflow: hidden;
+}
+
+.creator-image::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(
+            to top,
+            rgba(0,0,0,.55),
+            transparent 50%
+        );
+    transition: transform .5s ease;
+}
+
+.creator-card:hover .creator-image::after {
+    transform: scale(1.08);
+}
+
+.image-one {
+    background:
+        radial-gradient(
+            circle at 60% 30%,
+            #555,
+            transparent 25%
+        ),
+        linear-gradient(140deg,#202020,#555,#111);
+}
+
+.image-two {
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #555,
+            transparent 22%
+        ),
+        linear-gradient(140deg,#111,#444,#202020);
+}
+
+.image-three {
+    background:
+        radial-gradient(
+            circle at 70% 25%,
+            #666,
+            transparent 22%
+        ),
+        linear-gradient(140deg,#333,#111,#555);
+}
+
+.verified {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: var(--accent);
+    color: #090909;
+    padding: 7px 10px;
+    border-radius: 20px;
+    font-size: 9px;
+    font-weight: 700;
+    z-index: 2;
+}
+
+.creator-info {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.creator-info h3 {
+    font-family: "Space Grotesk";
+    font-size: 18px;
+}
+
+.creator-info p {
+    color: #777;
+    font-size: 11px;
+    margin-top: 5px;
+}
+
+.creator-rating {
+    color: var(--accent);
+    font-size: 12px;
+}
+
+.creator-price {
+    border-top: 1px solid var(--line);
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.creator-price span {
+    color: #666;
+    font-size: 10px;
+}
+
+.creator-price strong {
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   HOW IT WORKS
+========================================================= */
+
+.how {
+    padding: 140px 7vw;
+    border-top: 1px solid var(--line);
+    background: #0c0c0c;
+}
+
+.how > h2 {
+    font-family: "Space Grotesk";
+    font-size: clamp(45px, 6vw, 80px);
+    letter-spacing: -4px;
+    max-width: 700px;
+    line-height: .95;
+    margin-bottom: 80px;
+}
+
+.how > h2 span {
+    color: var(--accent);
+}
+
+.steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid var(--line);
+}
+
+.step {
+    min-height: 220px;
+    padding: 30px;
+    border-right: 1px solid var(--line);
+    transition: background .4s ease;
+}
+
+.step:last-child {
+    border-right: none;
+}
+
+.step:hover {
+    background: #151515;
+}
+
+.step span {
+    color: var(--accent);
+    font-family: "Space Grotesk";
+    font-size: 13px;
+}
+
+.step h3 {
+    font-family: "Space Grotesk";
+    font-size: 28px;
+    margin-top: 60px;
+}
+
+.step p {
+    color: #777;
+    font-size: 13px;
+    line-height: 1.6;
+    margin-top: 10px;
+}
+
+
+/* =========================================================
+   FINAL CTA
+========================================================= */
+
+.final-cta {
+    min-height: 600px;
+    padding: 120px 7vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.final-cta::before {
+    content: "";
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: rgba(200,255,50,.08);
+    filter: blur(100px);
+}
+
+.final-cta h2 {
+    position: relative;
+    font-family: "Space Grotesk";
+    font-size: clamp(55px, 8vw, 110px);
+    letter-spacing: -6px;
+    line-height: .9;
+    max-width: 900px;
+    margin-bottom: 45px;
+}
+
+.final-cta h2 span {
+    color: transparent;
+    -webkit-text-stroke: 1px white;
+}
+
+.final-cta .primary-btn {
+    position: relative;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+    padding: 30px 7vw;
+    border-top: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+}
+
+footer strong {
+    font-family: "Space Grotesk";
+    font-size: 20px;
+}
+
+footer p {
+    color: #666;
+    font-size: 11px;
+}
+
+footer p:last-child {
+    text-align: right;
+}
+
+
+/* =========================================================
+   JS REVEAL
+========================================================= */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(35px);
+    transition:
+        opacity .8s ease,
+        transform .8s ease;
+}
+
+.reveal.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   CREATOR MODAL
+========================================================= */
+
+.creator-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity .3s ease;
+}
+
+.creator-modal.active {
+    opacity: 1;
+}
+
+.modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,.82);
+    backdrop-filter: blur(16px);
+}
+
+.modal-box {
+    width: min(850px, 92vw);
+    max-height: 90vh;
+    overflow: auto;
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: .9fr 1.1fr;
+    background: #111;
+    border: 1px solid rgba(255,255,255,.14);
+    border-radius: 22px;
+    transform: translateY(30px) scale(.96);
+    transition: transform .4s ease;
+    box-shadow:
+        0 40px 120px rgba(0,0,0,.8);
+}
+
+.creator-modal.active .modal-box {
+    transform: translateY(0) scale(1);
+}
+
+.modal-visual {
+    min-height: 500px;
+    background:
+        radial-gradient(
+            circle at 60% 30%,
+            #666,
+            transparent 25%
+        ),
+        linear-gradient(
+            145deg,
+            #333,
+            #111,
+            #555
+        );
+    display: flex;
+    align-items: flex-start;
+    padding: 20px;
+}
+
+.modal-visual span {
+    background: var(--accent);
+    color: #000;
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 9px;
+    font-weight: 700;
+}
+
+.modal-content {
+    padding: 55px 45px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.modal-content h2 {
+    font-family: "Space Grotesk";
+    font-size: 48px;
+    letter-spacing: -2px;
+}
+
+.modal-category {
+    color: #777;
+    margin-top: 8px;
+}
+
+.modal-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin: 35px 0;
+}
+
+.modal-stats div {
+    border: 1px solid var(--line);
+    padding: 18px;
+    border-radius: 12px;
+    background: rgba(255,255,255,.02);
+}
+
+.modal-stats small {
+    display: block;
+    color: #666;
+    font-size: 9px;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+.modal-stats strong {
+    color: var(--accent);
+    font-size: 17px;
+}
+
+.modal-description {
+    color: #888;
+    font-size: 13px;
+    line-height: 1.7;
+    margin-bottom: 30px;
+}
+
+.modal-book {
+    width: fit-content;
+}
+
+.modal-close {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(0,0,0,.6);
+    color: white;
+    font-size: 24px;
+    z-index: 5;
+    transition:
+        background .3s ease,
+        color .3s ease,
+        transform .3s ease;
+}
+
+.modal-close:hover {
+    background: white;
+    color: black;
+    transform: rotate(90deg);
+}
+
+
+/* =========================================================
+   CREATOR JOIN MODAL
+========================================================= */
+
+.join-box {
+    width: min(980px, 94vw);
+    grid-template-columns: 1fr;
+    max-height: 92vh;
+}
+
+.join-box .modal-content {
+    padding: 50px;
+}
+
+.join-box .modal-content h2 {
+    font-size: clamp(42px, 5vw, 64px);
+    margin-bottom: 12px;
+}
+
+.creator-modal-title {
+    font-family: "Space Grotesk";
+    font-size: 14px;
+    letter-spacing: .5px;
+    margin: 25px 0 14px;
+    color: white;
+}
+
+
+/* =========================================================
+   CREATOR TYPES
+========================================================= */
+
+.creator-types {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.creator-type {
+    min-height: 105px;
+    padding: 18px 12px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: #151515;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 10px;
+    text-align: left;
+    transition:
+        transform .3s ease,
+        border-color .3s ease,
+        background .3s ease;
+}
+
+.creator-type span {
+    font-size: 24px;
+}
+
+.creator-type strong {
+    font-family: "Space Grotesk";
+    font-size: 12px;
+}
+
+.creator-type:hover {
+    transform: translateY(-5px);
+    border-color: rgba(200,255,50,.4);
+    background: #1b1b1b;
+}
+
+.creator-type.selected {
+    border-color: var(--accent);
+    background: rgba(200,255,50,.08);
+    box-shadow:
+        0 0 0 1px rgba(200,255,50,.15),
+        0 15px 40px rgba(200,255,50,.06);
+}
+
+
+/* =========================================================
+   CREATOR BENEFITS
+========================================================= */
+
+.creator-benefits {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.creator-benefits > div {
+    display: flex;
+    gap: 14px;
+    padding: 17px;
+    border: 1px solid var(--line);
+    border-radius: 13px;
+    background: #151515;
+    transition:
+        transform .3s ease,
+        border-color .3s ease;
+}
+
+.creator-benefits > div:hover {
+    transform: translateY(-3px);
+    border-color: rgba(200,255,50,.25);
+}
+
+.creator-benefits > div > span {
+    width: 35px;
+    height: 35px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: rgba(200,255,50,.08);
+    font-size: 17px;
+}
+
+.creator-benefits p {
+    color: #777;
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+.creator-benefits strong {
+    display: block;
+    color: white;
+    font-family: "Space Grotesk";
+    font-size: 12px;
+    margin-bottom: 3px;
+}
+
+
+/* =========================================================
+   CREATOR JOURNEY
+========================================================= */
+
+.creator-journey {
+    margin-top: 25px;
+    padding: 18px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(200,255,50,.05),
+            rgba(255,255,255,.015)
+        );
+}
+
+.creator-journey > small {
+    color: var(--accent);
+    font-size: 8px;
+    letter-spacing: 2px;
+}
+
+.journey {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 14px;
+}
+
+.journey span {
+    color: #aaa;
+    font-family: "Space Grotesk";
+    font-size: 9px;
+    letter-spacing: .5px;
+}
+
+.journey b {
+    color: var(--accent);
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   JOIN BUTTON
+========================================================= */
+
+.join-submit {
+    margin-top: 25px;
+    width: fit-content;
+}
+
+.join-submit:hover {
+    box-shadow:
+        0 15px 45px rgba(200,255,50,.2);
+}
+
+
+/* =========================================================
+   SUCCESS MODAL
+========================================================= */
+
+.success-box {
+    width: min(550px, 92vw);
+    display: block;
+}
+
+.creator-success {
+    text-align: center;
+    align-items: center;
+    padding: 65px 50px;
+}
+
+.success-icon {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #080808;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 34px;
+    font-weight: 800;
+    margin: 0 auto 25px;
+    box-shadow:
+        0 0 0 10px rgba(200,255,50,.06),
+        0 20px 60px rgba(200,255,50,.15);
+    animation: successPop .5s ease;
+}
+
+@keyframes successPop {
+
+    from {
+        opacity: 0;
+        transform: scale(.5);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+}
+
+.creator-success h2 {
+    margin-bottom: 10px;
+}
+
+.creator-success .modal-description strong {
+    color: var(--accent);
+}
+
+.success-close {
+    margin: 5px auto 0;
+}
+
+
+/* =========================================================
+   MINI ALERT
+========================================================= */
+
+.mystic-alert {
+    position: fixed;
+    left: 50%;
+    bottom: 35px;
+    transform: translate(-50%, 30px);
+    z-index: 20000;
+    background: #161616;
+    border: 1px solid rgba(255,255,255,.15);
+    border-radius: 40px;
+    padding: 13px 20px 13px 13px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #ddd;
+    font-size: 12px;
+    box-shadow: 0 20px 60px rgba(0,0,0,.5);
+    opacity: 0;
+    transition:
+        opacity .3s ease,
+        transform .3s ease;
+}
+
+.mystic-alert.show {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+
+.mystic-alert span {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   MODAL SCROLLBAR
+========================================================= */
+
+.modal-box::-webkit-scrollbar {
+    width: 5px;
+}
+
+.modal-box::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.modal-box::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 20px;
+}
+
+.modal-box::-webkit-scrollbar-thumb:hover {
+    background: var(--accent);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .navbar {
+        padding: 0 5vw;
+    }
+
+    .navbar nav {
+        display: none;
+    }
+
+    .hero {
+        grid-template-columns: 1fr;
+        padding: 70px 5vw;
+        text-align: center;
+    }
+
+    .hero-description {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+
+    .hero-visual {
+        min-height: 500px;
+    }
+
+    .creator-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .creator-image {
+        height: 500px;
+    }
+
+    .search-panel {
+        grid-template-columns: 1fr;
+    }
+
+    .search-item {
+        border-right: none;
+        border-bottom: 1px solid var(--line);
+    }
+
+    .search-btn {
+        min-height: 55px;
+        justify-content: center;
+    }
+
+    .steps {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .step:nth-child(2) {
+        border-right: none;
+    }
+
+    footer {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        text-align: center;
+    }
+
+    footer p:last-child {
+        text-align: center;
+    }
+
+    /* CREATOR JOIN */
+
+    .creator-types {
+        grid-template-columns: 1fr 1fr;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .modal-box {
+        grid-template-columns: 1fr;
+    }
+
+    .modal-visual {
+        min-height: 260px;
+    }
+
+    .modal-content {
+        padding: 35px 25px;
+    }
+
+    .modal-content h2 {
+        font-size: 38px;
+    }
+
+    .join-box .modal-content {
+        padding: 35px 22px;
+    }
+
+    .creator-types {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .creator-benefits {
+        grid-template-columns: 1fr;
+    }
+
+    .journey {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .journey span {
+        padding: 8px 0;
+    }
+
+    .journey b {
+        transform: rotate(90deg);
+        align-self: center;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .navbar {
+        height: 70px;
+    }
+
+    .nav-btn {
+        display: none;
+    }
+
+    .hero {
+        min-height: auto;
+        padding-top: 70px;
+        padding-bottom: 60px;
+    }
+
+    .hero h1 {
+        font-size: 53px;
+        letter-spacing: -4px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .primary-btn,
+    .secondary-btn {
+        justify-content: center;
+    }
+
+    .hero-visual {
+        min-height: 430px;
+    }
+
+    .visual-circle {
+        width: 320px;
+        height: 320px;
+    }
+
+    .camera-card {
+        width: 275px;
+    }
+
+    .camera-image {
+        height: 310px;
+    }
+
+    .floating-tag {
+        font-size: 10px;
+        padding: 9px 12px;
+    }
+
+    .tag-one {
+        left: 0;
+    }
+
+    .tag-two {
+        right: 0;
+    }
+
+    .discover,
+    .creators,
+    .how {
+        padding-left: 5vw;
+        padding-right: 5vw;
+    }
+
+    .section-heading h2 {
+        font-size: 45px;
+    }
+
+    .creator-heading {
+        display: block;
+    }
+
+    .view-all {
+        margin-top: 25px;
+    }
+
+    .steps {
+        grid-template-columns: 1fr;
+    }
+
+    .step {
+        border-right: none;
+        border-bottom: 1px solid var(--line);
+    }
+
+    .step:last-child {
+        border-bottom: none;
+    }
+
+    .final-cta {
+        min-height: 500px;
+    }
+
+    .final-cta h2 {
+        font-size: 55px;
+        letter-spacing: -4px;
+    }
+
+    .cursor,
+    .cursor-ring {
+        display: none;
+    }
+
+    /* CREATOR JOIN MOBILE */
+
+    .creator-types {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+    }
+
+    .creator-type {
+        min-height: 90px;
+        padding: 14px 10px;
+    }
+
+    .creator-type span {
+        font-size: 20px;
+    }
+
+    .creator-type strong {
+        font-size: 10px;
+    }
+
+    .creator-benefits > div {
+        padding: 14px;
+    }
+
+    .creator-journey {
+        padding: 15px;
+    }
+
+    .join-submit {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .creator-success {
+        padding: 50px 25px;
+    }
+
+}
+/* =====================================================
+   WHY JOIN MYSTIC MODAL
+===================================================== */
+
+.creator-join-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 11000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0;
+    transition: opacity .3s ease;
+}
+
+.creator-join-modal.active {
+    opacity: 1;
+}
+
+.join-backdrop {
+    position: absolute;
+    inset: 0;
+
+    background: rgba(0,0,0,.82);
+    backdrop-filter: blur(16px);
+}
+
+.join-box {
+    width: min(850px, 92vw);
+    max-height: 90vh;
+    overflow-y: auto;
+
+    position: relative;
+    z-index: 2;
+
+    background: #111;
+
+    border: 1px solid rgba(255,255,255,.14);
+    border-radius: 24px;
+
+    padding: 50px;
+
+    transform: translateY(35px) scale(.96);
+
+    transition:
+        transform .4s ease,
+        opacity .4s ease;
+}
+
+.creator-join-modal.active .join-box {
+    transform: translateY(0) scale(1);
+}
+
+.join-close {
+    position: absolute;
+
+    top: 20px;
+    right: 20px;
+
+    width: 40px;
+    height: 40px;
+
+    border-radius: 50%;
+
+    background: #222;
+    color: white;
+
+    font-size: 25px;
+
+    transition: .3s ease;
+}
+
+.join-close:hover {
+    background: white;
+    color: black;
+}
+
+.join-header {
+    max-width: 600px;
+}
+
+.join-header h2 {
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: clamp(45px, 7vw, 80px);
+
+    line-height: .9;
+    letter-spacing: -4px;
+
+    margin-bottom: 25px;
+}
+
+.join-header h2 span {
+    color: var(--accent);
+}
+
+.join-header > p:last-child {
+    color: #888;
+
+    font-size: 14px;
+    line-height: 1.7;
+
+    max-width: 520px;
+}
+
+.join-options {
+    margin: 40px 0;
+
+    border-top: 1px solid var(--line);
+}
+
+.join-option {
+    display: flex;
+    gap: 25px;
+
+    padding: 22px 0;
+
+    border-bottom: 1px solid var(--line);
+
+    transition: .3s ease;
+}
+
+.join-option:hover {
+    padding-left: 10px;
+}
+
+.join-option > span {
+    color: var(--accent);
+
+    font-family: "Space Grotesk";
+
+    font-size: 13px;
+}
+
+.join-option h3 {
+    font-family: "Space Grotesk";
+
+    font-size: 18px;
+
+    margin-bottom: 5px;
+}
+
+.join-option p {
+    color: #666;
+
+    font-size: 12px;
+}
+
+.start-creator {
+    margin-top: 5px;
+}
+
+@media (max-width: 600px) {
+
+    .join-box {
+        padding: 35px 25px;
+    }
+
+    .join-header h2 {
+        font-size: 50px;
+    }
+
+    .join-option {
+        gap: 15px;
+    }
+
+}
+/* =========================================================
+   INTERACTIVE DEMO MODALS
+========================================================= */
+
+.demo-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity .3s ease;
+}
+
+.demo-modal.active {
+    opacity: 1;
+}
+
+.demo-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,.82);
+    backdrop-filter: blur(15px);
+}
+
+.creator-form,
+.selection-modal,
+.profile-modal {
+    position: relative;
+    z-index: 2;
+    width: min(600px, 92vw);
+    max-height: 90vh;
+    overflow-y: auto;
+    background: #111;
+    border: 1px solid rgba(255,255,255,.14);
+    border-radius: 24px;
+    padding: 45px;
+    transform: translateY(30px) scale(.96);
+    transition: transform .35s ease;
+}
+
+.profile-modal {
+    width: min(850px, 92vw);
+    padding: 0;
+    display: grid;
+    grid-template-columns: .8fr 1.2fr;
+    overflow: hidden;
+}
+
+.demo-modal.active .creator-form,
+.demo-modal.active .selection-modal,
+.demo-modal.active .profile-modal {
+    transform: translateY(0) scale(1);
+}
+
+.demo-close {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #222;
+    color: white;
+    font-size: 25px;
+    z-index: 10;
+}
+
+.demo-close:hover {
+    background: white;
+    color: black;
+}
+
+
+/* CREATOR FORM */
+
+.form-header h2,
+.selection-modal h2 {
+    font-family: "Space Grotesk";
+    font-size: 45px;
+    letter-spacing: -2px;
+    margin-bottom: 12px;
+}
+
+.form-header h2 span {
+    color: var(--accent);
+}
+
+.form-header > p:last-child {
+    color: #777;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: #777;
+    margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid var(--line);
+    background: #181818;
+    color: white;
+    outline: none;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: var(--accent);
+}
+
+.creator-submit {
+    margin-top: 10px;
+}
+
+
+/* SELECTION */
+
+.selection-modal {
+    width: min(500px, 92vw);
+}
+
+.selection-options {
+    margin-top: 30px;
+    display: grid;
+    gap: 10px;
+}
+
+.selection-option {
+    width: 100%;
+    padding: 17px;
+    background: #181818;
+    border: 1px solid var(--line);
+    color: white;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    transition: .25s ease;
+}
+
+.selection-option:hover {
+    border-color: var(--accent);
+    transform: translateX(5px);
+}
+
+.selection-option span {
+    color: var(--accent);
+}
+
+
+/* PROFILE */
+
+.profile-image {
+    min-height: 500px;
+    background:
+        radial-gradient(
+            circle at 60% 30%,
+            #666,
+            transparent 25%
+        ),
+        linear-gradient(
+            145deg,
+            #333,
+            #111,
+            #555
+        );
+    padding: 20px;
+}
+
+.profile-image span {
+    background: var(--accent);
+    color: black;
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 9px;
+    font-weight: 700;
+}
+
+.profile-content {
+    padding: 55px 40px;
+}
+
+.profile-content h2 {
+    font-family: "Space Grotesk";
+    font-size: 45px;
+}
+
+.profile-category {
+    color: #777;
+    margin-top: 8px;
+}
+
+.profile-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 30px 0;
+}
+
+.profile-stats div {
+    padding: 15px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+}
+
+.profile-stats small {
+    display: block;
+    color: #666;
+    font-size: 9px;
+    margin-bottom: 7px;
+}
+
+.profile-stats strong {
+    color: var(--accent);
+}
+
+.profile-content > p:not(.profile-category) {
+    color: #888;
+    line-height: 1.7;
+    margin-bottom: 25px;
+}
+
+
+/* SUCCESS */
+
+.success-box {
+    text-align: center;
+    padding: 30px 10px;
+}
+
+.success-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: black;
+    display: grid;
+    place-items: center;
+    font-size: 30px;
+    font-weight: bold;
+    margin: 0 auto 25px;
+}
+
+.success-box h3 {
+    font-family: "Space Grotesk";
+    font-size: 30px;
+}
+
+.success-box p {
+    color: #777;
+    line-height: 1.6;
+    margin: 15px 0 25px;
+}
+
+.verification {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    color: #aaa;
+    font-size: 12px;
+    margin-bottom: 30px;
+}
+
+.verification span {
+    color: var(--accent);
+}
+
+
+/* NAVBAR */
+
+.navbar-scrolled {
+    position: sticky;
+    top: 0;
+    background: rgba(8,8,8,.88) !important;
+    backdrop-filter: blur(15px);
+}
+
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+
+    .creator-form,
+    .selection-modal {
+        padding: 30px 22px;
+    }
+
+    .form-header h2,
+    .selection-modal h2 {
+        font-size: 36px;
+    }
+
+    .profile-modal {
+        grid-template-columns: 1fr;
+        max-height: 90vh;
+    }
+
+    .profile-image {
+        min-height: 220px;
+    }
+
+    .profile-content {
+        padding: 30px 25px;
+    }
+
+    .profile-content h2 {
+        font-size: 35px;
+    }
+
+}
+/* =========================================================
+   MYSTIC DROPDOWN
+========================================================= */
+
+.mystic-dropdown {
+    background: #151515;
+    border: 1px solid rgba(255,255,255,.15);
+    border-radius: 14px;
+    padding: 7px;
+    box-shadow: 0 20px 60px rgba(0,0,0,.6);
+    backdrop-filter: blur(15px);
+    overflow: hidden;
+}
+
+.mystic-dropdown button {
+    display: block;
+    width: 100%;
+    padding: 12px 14px;
+    background: transparent;
+    color: #ddd;
+    text-align: left;
+    border-radius: 9px;
+    font-size: 13px;
+}
+
+.mystic-dropdown button:hover {
+    background: #c8ff32;
+    color: #080808;
+}
+/* =====================================================
+   BECOME A CREATOR
+===================================================== */
+
+.creator-join-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 20000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: .35s ease;
+}
+
+.creator-join-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.creator-join-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,.82);
+    backdrop-filter: blur(15px);
+}
+
+.creator-join-box {
+    width: min(720px, 92vw);
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    z-index: 2;
+    background: #111;
+    border: 1px solid rgba(255,255,255,.14);
+    border-radius: 24px;
+    padding: 55px;
+    transform: translateY(35px) scale(.95);
+    transition: .45s ease;
+}
+
+.creator-join-modal.active .creator-join-box {
+    transform: translateY(0) scale(1);
+}
+
+.creator-join-close {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #1b1b1b;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    transition: .25s ease;
+}
+
+.creator-join-close:hover {
+    background: white;
+    color: black;
+}
+
+.creator-step {
+    display: none;
+}
+
+.creator-step.active {
+    display: block;
+    animation: creatorStepIn .45s ease;
+}
+
+@keyframes creatorStepIn {
+    from {
+        opacity: 0;
+        transform: translateX(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.creator-step h2 {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: clamp(48px, 7vw, 75px);
+    line-height: .9;
+    letter-spacing: -4px;
+    margin-bottom: 25px;
+}
+
+.creator-step h2 span {
+    color: transparent;
+    -webkit-text-stroke: 1px white;
+}
+
+.creator-step > p:not(.eyebrow) {
+    color: #888;
+    line-height: 1.7;
+    max-width: 500px;
+}
+
+
+/* CREATOR TYPES */
+
+.creator-types {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 12px;
+    margin: 35px 0;
+}
+
+.creator-type {
+    min-height: 130px;
+    background: #181818;
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 16px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    transition: .3s ease;
+}
+
+.creator-type strong {
+    font-size: 30px;
+}
+
+.creator-type span {
+    font-size: 12px;
+    color: #aaa;
+}
+
+.creator-type:hover,
+.creator-type.selected {
+    border-color: var(--accent);
+    background: rgba(200,255,50,.08);
+    transform: translateY(-5px);
+}
+
+.creator-type.selected span {
+    color: var(--accent);
+}
+
+
+/* BENEFITS */
+
+.creator-benefits {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    margin: 35px 0;
+    border: 1px solid var(--line);
+}
+
+.creator-benefits div {
+    padding: 22px;
+    background: #151515;
+    min-height: 145px;
+}
+
+.creator-benefits b {
+    color: var(--accent);
+    font-size: 11px;
+}
+
+.creator-benefits h3 {
+    font-family: "Space Grotesk";
+    margin-top: 18px;
+    font-size: 18px;
+}
+
+.creator-benefits p {
+    color: #777;
+    font-size: 12px;
+    line-height: 1.5;
+    margin-top: 7px;
+}
+
+
+/* FORM */
+
+.creator-form {
+    display: grid;
+    gap: 12px;
+    margin: 35px 0;
+}
+
+.creator-form input {
+    width: 100%;
+    padding: 18px;
+    background: #181818;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    color: white;
+    outline: none;
+    font-size: 14px;
+}
+
+.creator-form input:focus {
+    border-color: var(--accent);
+}
+
+.creator-form input::placeholder {
+    color: #666;
+}
+
+.creator-next {
+    margin-top: 10px;
+}
+
+
+/* SUCCESS */
+
+.creator-success {
+    text-align: center;
+}
+
+.success-icon {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 25px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #080808;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.creator-success > p:not(.eyebrow) {
+    margin: 0 auto 25px;
+}
+
+.success-card {
+    text-align: left;
+    background: #181818;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 20px;
+    margin: 25px 0;
+}
+
+.success-card small {
+    display: block;
+    color: #666;
+    font-size: 9px;
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+}
+
+.success-card strong {
+    display: block;
+    color: var(--accent);
+    margin-bottom: 18px;
+}
+
+.success-card strong:last-child {
+    margin-bottom: 0;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .creator-join-box {
+        padding: 40px 22px;
+    }
+
+    .creator-types {
+        grid-template-columns: 1fr;
+    }
+
+    .creator-type {
+        min-height: 75px;
+        flex-direction: row;
+    }
+
+    .creator-benefits {
+        grid-template-columns: 1fr;
+    }
+
+    .creator-step h2 {
+        font-size: 48px;
+    }
+
+}
+/* =========================================================
+   BECOME A CREATOR — MODAL
+========================================================= */
+
+.creator-join-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transition: opacity 0.3s ease,
+                visibility 0.3s ease;
+}
+
+.creator-join-modal.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+
+/* =========================================================
+   BACKDROP
+========================================================= */
+
+.creator-join-backdrop {
+    position: absolute;
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.78);
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+}
+
+
+/* =========================================================
+   MAIN BOX
+========================================================= */
+
+.creator-join-box {
+    position: relative;
+
+    width: min(760px, calc(100% - 40px));
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    background:
+        linear-gradient(
+            145deg,
+            #151515,
+            #0b0b0b
+        );
+
+    border: 1px solid rgba(255,255,255,0.12);
+
+    border-radius: 28px;
+
+    padding: 42px;
+
+    box-shadow:
+        0 30px 100px rgba(0,0,0,0.65);
+
+    transform: translateY(25px) scale(0.97);
+
+    transition:
+        transform 0.35s ease;
+}
+
+.creator-join-modal.active
+.creator-join-box {
+    transform: translateY(0) scale(1);
+}
+
+
+/* =========================================================
+   CLOSE BUTTON
+========================================================= */
+
+.creator-join-close {
+    position: absolute;
+
+    top: 20px;
+    right: 20px;
+
+    width: 42px;
+    height: 42px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(255,255,255,0.15);
+
+    background: rgba(255,255,255,0.06);
+
+    color: #fff;
+
+    font-size: 25px;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: 0.25s ease;
+
+    z-index: 10;
+}
+
+.creator-join-close:hover {
+    background: #fff;
+    color: #000;
+
+    transform: rotate(90deg);
+}
+
+
+/* =========================================================
+   CREATOR STEP
+========================================================= */
+
+.creator-step {
+    display: none;
+}
+
+.creator-step.active {
+    display: block;
+
+    animation:
+        creatorStepIn 0.35s ease;
+}
+
+@keyframes creatorStepIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* =========================================================
+   STEP TOP
+========================================================= */
+
+.creator-step-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 28px;
+}
+
+.creator-step-number {
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    color: rgba(255,255,255,0.55);
+}
+
+.creator-step-label {
+    font-size: 10px;
+
+    letter-spacing: 1.8px;
+
+    color: rgba(255,255,255,0.35);
+}
+
+
+/* =========================================================
+   HEADING
+========================================================= */
+
+.creator-step .eyebrow {
+    margin-bottom: 14px;
+
+    font-size: 11px;
+
+    letter-spacing: 2.5px;
+
+    color: rgba(255,255,255,0.5);
+}
+
+.creator-step h2 {
+    margin: 0;
+
+    font-family:
+        "Space Grotesk",
+        sans-serif;
+
+    font-size: clamp(34px, 5vw, 52px);
+
+    line-height: 1.02;
+
+    letter-spacing: -2px;
+
+    color: #fff;
+}
+
+.creator-step h2 span {
+    color: rgba(255,255,255,0.45);
+}
+
+.creator-intro {
+    max-width: 520px;
+
+    margin:
+        18px 0 30px;
+
+    color: rgba(255,255,255,0.58);
+
+    font-size: 15px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   ⭐ CREATOR TYPES — 2 × 2 GRID
+========================================================= */
+
+.creator-types {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 14px;
+
+    margin-top: 28px;
+}
+
+
+/* =========================================================
+   CREATOR TYPE CARD
+========================================================= */
+
+.creator-type {
+
+    position: relative;
+
+    width: 100%;
+
+    min-height: 125px;
+
+    padding: 20px;
+
+    display: grid;
+
+    grid-template-columns:
+        52px 1fr 24px;
+
+    align-items: center;
+
+    gap: 14px;
+
+    text-align: left;
+
+    border-radius: 18px;
+
+    border: 1px solid
+        rgba(255,255,255,0.10);
+
+    background:
+        rgba(255,255,255,0.045);
+
+    color: #fff;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.creator-type:hover {
+
+    transform:
+        translateY(-4px);
+
+    background:
+        rgba(255,255,255,0.09);
+
+    border-color:
+        rgba(255,255,255,0.25);
+
+    box-shadow:
+        0 15px 35px
+        rgba(0,0,0,0.25);
+}
+
+
+/* =========================================================
+   SELECTED CARD
+========================================================= */
+
+.creator-type.selected {
+
+    background:
+        rgba(255,255,255,0.12);
+
+    border-color:
+        rgba(255,255,255,0.55);
+
+    box-shadow:
+        0 0 0 1px
+        rgba(255,255,255,0.08);
+}
+
+
+/* =========================================================
+   ICON
+========================================================= */
+
+.creator-type-icon {
+
+    width: 52px;
+    height: 52px;
+
+    border-radius: 15px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 25px;
+
+    background:
+        rgba(255,255,255,0.08);
+
+    border:
+        1px solid
+        rgba(255,255,255,0.10);
+
+    transition: 0.25s ease;
+}
+
+.creator-type:hover
+.creator-type-icon {
+
+    background:
+        rgba(255,255,255,0.14);
+
+    transform:
+        scale(1.05);
+}
+
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.creator-type-content {
+
+    min-width: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 6px;
+}
+
+.creator-type-content strong {
+
+    font-family:
+        "Space Grotesk",
+        sans-serif;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    color: #fff;
+}
+
+.creator-type-content span {
+
+    font-family:
+        "DM Sans",
+        sans-serif;
+
+    font-size: 12px;
+
+    line-height: 1.4;
+
+    color:
+        rgba(255,255,255,0.48);
+}
+
+
+/* =========================================================
+   ARROW
+========================================================= */
+
+.creator-type-arrow {
+
+    font-size: 18px;
+
+    color:
+        rgba(255,255,255,0.35);
+
+    transition:
+        transform 0.25s ease,
+        color 0.25s ease;
+}
+
+.creator-type:hover
+.creator-type-arrow {
+
+    color: #fff;
+
+    transform:
+        translateX(4px);
+}
+
+
+/* =========================================================
+   CONTINUE BUTTON
+========================================================= */
+
+.creator-next {
+
+    width: 100%;
+
+    margin-top: 22px;
+
+    min-height: 54px;
+
+    border: none;
+
+    border-radius: 14px;
+
+    background: #fff;
+
+    color: #000;
+
+    font-family:
+        "Space Grotesk",
+        sans-serif;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.creator-next:hover {
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 12px 30px
+        rgba(255,255,255,0.12);
+}
+
+.creator-next span {
+
+    font-size: 18px;
+
+    transition:
+        transform 0.25s ease;
+}
+
+.creator-next:hover span {
+
+    transform:
+        translateX(4px);
+}
+
+
+/* =========================================================
+   STEP 2 — BENEFITS
+========================================================= */
+
+.creator-benefits {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 14px;
+
+    margin-top: 30px;
+}
+
+.creator-benefits > div {
+
+    padding: 20px;
+
+    min-height: 135px;
+
+    border-radius: 16px;
+
+    background:
+        rgba(255,255,255,0.045);
+
+    border:
+        1px solid
+        rgba(255,255,255,0.09);
+}
+
+.creator-benefits b {
+
+    font-size: 11px;
+
+    letter-spacing: 1px;
+
+    color:
+        rgba(255,255,255,0.4);
+}
+
+.creator-benefits h3 {
+
+    margin:
+        12px 0 7px;
+
+    font-size: 15px;
+
+    color: #fff;
+}
+
+.creator-benefits p {
+
+    margin: 0;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+
+    color:
+        rgba(255,255,255,0.48);
+}
+
+
+/* =========================================================
+   STEP 3 — FORM
+========================================================= */
+
+.creator-form {
+
+    display: grid;
+
+    gap: 12px;
+
+    margin-top: 28px;
+}
+
+.creator-form input {
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 16px 18px;
+
+    border-radius: 13px;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.10);
+
+    outline: none;
+
+    background:
+        rgba(255,255,255,0.05);
+
+    color: #fff;
+
+    font-family:
+        "DM Sans",
+        sans-serif;
+
+    font-size: 14px;
+
+    transition: 0.25s ease;
+}
+
+.creator-form input::placeholder {
+
+    color:
+        rgba(255,255,255,0.35);
+}
+
+.creator-form input:focus {
+
+    border-color:
+        rgba(255,255,255,0.4);
+
+    background:
+        rgba(255,255,255,0.08);
+}
+
+
+/* =========================================================
+   STEP 4 — SUCCESS
+========================================================= */
+
+.creator-success {
+
+    text-align: center;
+}
+
+.success-icon {
+
+    width: 72px;
+    height: 72px;
+
+    margin:
+        0 auto 22px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #fff;
+
+    color: #000;
+
+    font-size: 30px;
+
+    font-weight: 700;
+
+    box-shadow:
+        0 15px 40px
+        rgba(255,255,255,0.12);
+}
+
+.creator-success > p:not(.eyebrow) {
+
+    color:
+        rgba(255,255,255,0.55);
+
+    line-height: 1.6;
+}
+
+.success-card {
+
+    display: grid;
+
+    gap: 7px;
+
+    text-align: left;
+
+    margin:
+        28px auto;
+
+    padding: 20px;
+
+    max-width: 400px;
+
+    border-radius: 16px;
+
+    background:
+        rgba(255,255,255,0.05);
+
+    border:
+        1px solid
+        rgba(255,255,255,0.10);
+}
+
+.success-card small {
+
+    margin-top: 6px;
+
+    font-size: 9px;
+
+    letter-spacing: 1.5px;
+
+    color:
+        rgba(255,255,255,0.35);
+}
+
+.success-card strong {
+
+    font-size: 16px;
+
+    color: #fff;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 650px) {
+
+    .creator-join-box {
+
+        width:
+            calc(100% - 24px);
+
+        max-height: 92vh;
+
+        padding: 28px 20px;
+
+        border-radius: 22px;
+    }
+
+    .creator-step h2 {
+
+        font-size: 34px;
+
+        letter-spacing: -1.3px;
+    }
+
+    /* Mobile = 1 column */
+
+    .creator-types {
+
+        grid-template-columns: 1fr;
+
+        gap: 10px;
+    }
+
+    .creator-type {
+
+        min-height: 88px;
+
+        padding: 14px;
+    }
+
+    .creator-type-icon {
+
+        width: 44px;
+        height: 44px;
+
+        font-size: 21px;
+    }
+
+    .creator-benefits {
+
+        grid-template-columns: 1fr;
+    }
+
+    .creator-step-top {
+
+        margin-bottom: 22px;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 400px) {
+
+    .creator-join-box {
+
+        padding: 24px 16px;
+    }
+
+    .creator-type {
+
+        grid-template-columns:
+            44px 1fr 20px;
+
+        gap: 10px;
+    }
+
+    .creator-type-content strong {
+
+        font-size: 14px;
+    }
+
+    .creator-type-content span {
+
+        font-size: 11px;
+    }
+
+}
+/* =====================================================
+   CREATOR TYPE — FORCE 2 x 2
+===================================================== */
+
+.creator-types {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 14px !important;
+    width: 100% !important;
+}
+
+.creator-type {
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: 120px !important;
+
+    display: grid !important;
+    grid-template-columns: 52px 1fr 20px !important;
+
+    align-items: center !important;
+    gap: 12px !important;
+
+    padding: 18px !important;
+
+    box-sizing: border-box !important;
+
+    border-radius: 18px !important;
+
+    border: 1px solid rgba(255,255,255,.12) !important;
+
+    background: rgba(255,255,255,.05) !important;
+
+    color: white !important;
+
+    cursor: pointer !important;
+}
+
+.creator-type-icon {
+    width: 50px !important;
+    height: 50px !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    border-radius: 14px !important;
+
+    background: rgba(255,255,255,.08) !important;
+
+    font-size: 24px !important;
+}
+
+.creator-type-content {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 5px !important;
+}
+
+.creator-type-content strong {
+    display: block !important;
+
+    color: white !important;
+
+    font-size: 15px !important;
+}
+
+.creator-type-content span {
+    display: block !important;
+
+    color: rgba(255,255,255,.5) !important;
+
+    font-size: 12px !important;
+}
+
+.creator-type-arrow {
+    color: rgba(255,255,255,.4) !important;
+}
+
+
+/* SELECTED */
+
+.creator-type.selected {
+    border-color: rgba(255,255,255,.5) !important;
+    background: rgba(255,255,255,.12) !important;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 650px) {
+
+    .creator-types {
+        grid-template-columns: 1fr !important;
+    }
+
+}
+/* =====================================================
+   BECOME CREATOR — STEP 01
+===================================================== */
+
+.creator-flow-box {
+    width: min(760px, 92vw);
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.creator-step-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 28px;
+}
+
+.creator-step-number,
+.creator-step-label {
+    font-size: 11px;
+    letter-spacing: 2px;
+    font-weight: 700;
+    opacity: .55;
+}
+
+.creator-flow-box .creator-step h2 {
+    font-size: clamp(32px, 5vw, 52px);
+    line-height: 1.05;
+    margin: 10px 0 14px;
+}
+
+.creator-flow-box .creator-step h2 span {
+    opacity: .55;
+}
+
+.creator-flow-box .modal-category {
+    margin-bottom: 28px;
+    opacity: .6;
+}
+
+
+/* 2 × 2 GRID */
+
+.creator-type-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin: 25px 0 22px;
+}
+
+
+/* CREATOR CARD */
+
+.creator-flow-box .creator-type {
+    width: 100%;
+    min-height: 115px;
+
+    display: grid;
+    grid-template-columns: 45px 1fr;
+
+    align-items: center;
+    text-align: left;
+
+    padding: 18px;
+
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 16px;
+
+    background: rgba(255,255,255,.035);
+    color: #fff;
+
+    cursor: pointer;
+
+    transition:
+        .25s ease,
+        transform .25s ease,
+        border-color .25s ease;
+}
+
+.creator-flow-box .creator-type:hover {
+    transform: translateY(-3px);
+    border-color: rgba(255,255,255,.35);
+    background: rgba(255,255,255,.07);
+}
+
+
+/* SELECTED */
+
+.creator-flow-box .creator-type.selected {
+    border-color: rgba(255,255,255,.7);
+    background: rgba(255,255,255,.09);
+    box-shadow: 0 0 0 1px rgba(255,255,255,.12);
+}
+
+
+/* ICON */
+
+.creator-type-icon {
+    font-size: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* TEXT */
+
+.creator-type-content {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.creator-type-content strong {
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.creator-type-content small {
+    font-size: 11px;
+    line-height: 1.4;
+    opacity: .55;
+}
+
+
+/* CONTINUE */
+
+.creator-flow-box .creator-next {
+    width: 100%;
+    justify-content: center;
+    margin-top: 5px;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .creator-flow-box {
+        width: 94vw;
+        padding: 24px;
+    }
+
+    .creator-type-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 9px;
+    }
+
+    .creator-flow-box .creator-type {
+        min-height: 105px;
+        padding: 12px;
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 7px;
+    }
+
+    .creator-type-icon {
+        font-size: 24px;
+    }
+
+    .creator-type-content {
+        align-items: center;
+    }
+
+    .creator-type-content strong {
+        font-size: 13px;
+    }
+
+    .creator-type-content small {
+        font-size: 9px;
+    }
+
+}
+/* =====================================================
+   CREATOR STEP 02 — WHY JOIN MYSTIC
+===================================================== */
+
+.creator-flow-box .creator-benefits {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin: 28px 0 24px;
+    align-items: stretch;
+}
+
+.creator-flow-box .benefit-card {
+    min-height: 145px;
+    padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 16px;
+
+    background: rgba(255,255,255,.035);
+
+    box-sizing: border-box;
+
+    transition: .25s ease;
+}
+
+.creator-flow-box .benefit-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(255,255,255,.3);
+    background: rgba(255,255,255,.06);
+}
+
+.creator-flow-box .benefit-card > span {
+    display: block;
+
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+
+    opacity: .45;
+    margin-bottom: 18px;
+}
+
+.creator-flow-box .benefit-card h3 {
+    margin: 0 0 8px;
+
+    font-size: 16px;
+    line-height: 1.2;
+}
+
+.creator-flow-box .benefit-card p {
+    margin: 0;
+
+    font-size: 12px;
+    line-height: 1.5;
+
+    opacity: .55;
+}
+
+
+/* =====================================================
+   STEP 02 BUTTON
+===================================================== */
+
+.creator-flow-box .benefits-next {
+    width: 100%;
+    justify-content: center;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 600px) {
+
+    .creator-flow-box .creator-benefits {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 9px;
+    }
+
+    .creator-flow-box .benefit-card {
+        min-height: 155px;
+        padding: 15px;
+    }
+
+    .creator-flow-box .benefit-card h3 {
+        font-size: 13px;
+    }
+
+    .creator-flow-box .benefit-card p {
+        font-size: 10px;
+    }
+
+}
+/* =====================================================
+   BECOME A CREATOR — STEP 01 ONLY
+   CLEAN 2 × 2 GRID
+===================================================== */
+
+.creator-flow-box .creator-type-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    grid-template-rows: repeat(2, 120px) !important;
+    gap: 14px !important;
+
+    width: 100%;
+    margin: 26px 0 22px;
+}
+
+
+/* EACH CREATOR CARD */
+
+.creator-flow-box .creator-type-grid .creator-type {
+    width: 100% !important;
+    height: 120px !important;
+    min-height: 120px !important;
+
+    box-sizing: border-box;
+
+    display: grid !important;
+    grid-template-columns: 44px 1fr !important;
+    align-items: center !important;
+
+    padding: 16px !important;
+
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 16px;
+
+    background: rgba(255,255,255,.035);
+
+    color: #fff;
+}
+
+
+/* ICON */
+
+.creator-flow-box .creator-type-icon {
+    width: 44px;
+    height: 44px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 25px;
+}
+
+
+/* TEXT */
+
+.creator-flow-box .creator-type-content {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 5px !important;
+
+    min-width: 0;
+}
+
+.creator-flow-box .creator-type-content strong {
+    font-size: 14px;
+    line-height: 1.2;
+}
+
+.creator-flow-box .creator-type-content small {
+    font-size: 10px;
+    line-height: 1.35;
+    opacity: .55;
+}
+
+
+/* HOVER */
+
+.creator-flow-box .creator-type:hover {
+    transform: translateY(-2px);
+    border-color: rgba(255,255,255,.3);
+}
+
+
+/* SELECTED */
+
+.creator-flow-box .creator-type.selected {
+    border-color: rgba(255,255,255,.65);
+    background: rgba(255,255,255,.08);
+}
+
+
+/* CONTINUE */
+
+.creator-flow-box .creator-next {
+    width: 100%;
+    height: 48px;
+
+    margin-top: 2px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 600px) {
+
+    .creator-flow-box .creator-type-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        grid-template-rows: repeat(2, 105px) !important;
+        gap: 10px !important;
+    }
+
+    .creator-flow-box .creator-type-grid .creator-type {
+        height: 105px !important;
+        min-height: 105px !important;
+
+        grid-template-columns: 1fr !important;
+
+        text-align: center;
+        justify-items: center;
+
+        padding: 10px !important;
+    }
+
+    .creator-flow-box .creator-type-icon {
+        width: auto;
+        height: auto;
+        font-size: 22px;
+    }
+
+    .creator-flow-box .creator-type-content {
+        align-items: center;
+    }
+
+    .creator-flow-box .creator-type-content strong {
+        font-size: 12px;
+    }
+
+    .creator-flow-box .creator-type-content small {
+        font-size: 9px;
+    }
+
+}
+/* =========================================
+   STEP 01 — CLEAN HEADING
+========================================= */
+
+.creator-heading-clean {
+    width: 100%;
+    margin-bottom: 24px;
+    text-align: left;
+}
+
+.creator-heading-clean .creator-program {
+    margin: 0 0 12px;
+
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+
+    opacity: .5;
+}
+
+.creator-heading-clean h2 {
+    margin: 0;
+
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -1px;
+
+    color: #fff;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .creator-heading-clean h2 {
+        font-size: 28px;
+        letter-spacing: -.5px;
+    }
+
+    .creator-heading-clean .creator-program {
+        font-size: 9px;
+        letter-spacing: 1.7px;
+    }
+
+}
